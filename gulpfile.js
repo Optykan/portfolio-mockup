@@ -25,7 +25,6 @@ gulp.task('server', ['sass'], function() {
 
 	gulp.watch("assets/scss/*.scss", ['sass']);
 	gulp.watch(["assets/js/**/*.js", "assets/js/*.js"], ['js']);
-	gulp.watch(["assets/react/**/*.js", "assets/react/*.js"], ['react']);
 	gulp.watch(["routes/*.html", "views/**/*.ejs"]).on('change', browserSync.reload);
 });
 
@@ -49,15 +48,6 @@ gulp.task('js', function(){
 		presets: ['env']
 	}).on('error', console.log))
 	.pipe(gulp.dest("public/javascripts"));
-
-	return browserSync.reload();
-})
-
-gulp.task('react', function(){
-	browserify("./assets/react/app.js")
-	.transform("babelify")
-	.bundle()
-	.pipe(fs.createWriteStream("public/javascripts/react/app.js"));
 
 	return browserSync.reload();
 })
