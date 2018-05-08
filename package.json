@@ -12,6 +12,7 @@
     "dotenv": "^4.0.0",
     "ejs": "~2.5.7",
     "express": "~4.15.5",
+    "firebase-admin": "^5.12.0",
     "foundation-sites": "^6.4.4-rc1",
     "gulp": "^3.9.1",
     "mongodb": "^3.0.0-rc0",
