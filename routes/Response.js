@@ -7,9 +7,9 @@ const STATUS_BAD_REQUEST = 400;
 class Response{
 	constructor(status, message, body){
 		
-		this.status  = status;
-		this.message = message;
-		this.body    = body;
+		this.status  = status || null;
+		this.message = message || null;
+		this.body    = body || null;
 	}
 	send(res){
 		res.setHeader('Content-Type', 'application/json');

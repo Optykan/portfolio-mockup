@@ -19,11 +19,25 @@ router.get('/', function(req, res, next) {
 	// res.send(JSON.stringify({ message: Response.STATUS_NOT_FOUND}));
 });
 
+router.get('/portfolio', function(req, res, next){
+	var db = admin.database();
+	var ref = db.ref("/portfolio");
+	ref.on("value", snapshot => {
+		let response = new Response(Response.STATUS_OK, 'Retrieved all posts successfully', snapshot.val());
+		response.send(res);
+	})
+});
+
 router.get('/portfolio/:id', function(req, res, next){
 	var db = admin.database();
 	var ref = db.ref("/portfolio/"+req.params.id);
 	ref.on("value", snapshot => {
-		let response = new Response(Response.STATUS_OK, 'Retrieved posts successfully', snapshot.val());
+		let response = null;
+		if(snapshot.exists()){
+			response = new Response(Response.STATUS_OK, 'Retrieved posts successfully', snapshot.val());
+		} else {
+			response = new Response(Response.STATUS_NOT_FOUND, 'Could not find snapshot', null);
+		}
 		response.send(res);
 	})
 });
