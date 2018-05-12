@@ -1,4 +1,4 @@
- <% var stylesheets = [''] %>
+<% var stylesheets = [''] %>
 <% include partials/header %>
 
 <div id="app">
@@ -11,6 +11,9 @@
 	</section>
 	<section class="content" id="content-right">
 		content-right
+		<% portfolio.forEach(project=>{ %>
+			<%- include('partials/circle-item', {project: project}) %>
+		<% }) %>
 	</section>
 </div>
 
