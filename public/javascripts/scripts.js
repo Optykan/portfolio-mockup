@@ -15,11 +15,10 @@ function get(url, params) {
 
 	return new Promise(function (resolve, reject) {
 		xhttp.onreadystatechange = function () {
-			// console.log(this)
 			if (this.readyState === 4 && 200 <= this.status && this.status < 400) {
 				resolve(JSON.parse(this.responseText));
-			} else {
-				// reject(this.statusText)
+			} else if (this.readyState === 4) {
+				reject(JSON.parse(this.responseText));
 			}
 		};
 	});
@@ -29,6 +28,6 @@ function get(url, params) {
 	get('http://localhost:3001/api/portfolio').then(function (response) {
 		console.log(response);
 	}).catch(function (err) {
-		console.log(response);
+		console.error(err);
 	});
 })();

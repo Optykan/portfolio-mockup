@@ -8,25 +8,22 @@ function get(url, params){
 		}, '?');
 	}
 
-	
-
 	xhttp.open("GET", url+queryString, true);
 	xhttp.send();
 
 	return new Promise((resolve, reject)=>{
 		xhttp.onreadystatechange = function(){
-			// console.log(this)
 			if(this.readyState === 4 && 200 <= this.status && this.status < 400){
 				resolve(JSON.parse(this.responseText))
-			} else {
-				// reject(this.statusText)
+			} else if(this.readyState === 4) {
+				reject(JSON.parse(this.responseText))
 			}
-		}
+		}  
 	})
 }
 
 (function(){
 	get('http://localhost:3001/api/portfolio')
 		.then(response=>{console.log(response)})
-		.catch(err=>{console.log(response)})
+		.catch(err=>{console.error(err)})
 })()
