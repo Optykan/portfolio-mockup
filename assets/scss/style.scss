@@ -2,23 +2,72 @@
 @import 'settings';
 @include foundation-everything;
 
-$circle-radius: 100px;
+$circle-large-radius: rem-calc(150);
+$circle-medium-radius: rem-calc(100);
+$circle-small-radius: rem-calc(150);
+$circle-margin: 0.5rem;
+
+html, body, .wrapper, #app{
+	height: 100%;
+}
+
+.wrapper{
+	display: flex;
+	justify-content: center;
+	padding: 5rem;
+}
 
 #app{
 	display:flex;
-	.content{
-		flex: 1 1 50%;
-	}
+	justify-content: center;
+	align-items: center;
+	width: 960px;
 	#content-right{
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
+		align-items:center;
+		padding: $circle-margin;
+		max-width: 4*$circle-large-radius + 4*$circle-margin+1rem;
+		position: relative;
+		top: -$circle-margin - $circle-large-radius/2;
+		@include breakpoint(medium only){
+			top: -$circle-margin - $circle-medium-radius/2;
+			max-width: 4*$circle-medium-radius + 4*$circle-margin+1rem;
+		}
+		@include breakpoint(small down){
+			top: -$circle-margin - $circle-small-radius/2;
+			max-width: 4*$circle-small-radius + 4*$circle-margin+1rem;
+		}
+	}
+	#content-left{
+		padding: 1rem;
+		flex: 1 0 auto;
 	}
 	.circle{
 		border-radius: 50%;
 		background-color: red;
-		height: 2*$circle-radius;
-		width: 2*$circle-radius;
+		height: 2*$circle-large-radius;
+		width: 2*$circle-large-radius;
+		@include breakpoint(medium only){
+			height: 2*$circle-medium-radius;
+			width: 2*$circle-medium-radius;
+		}
+		@include breakpoint(small down){
+			height: 2*$circle-small-radius;
+			width: 2*$circle-small-radius;
+		}
 		background-position: center;
+		margin: $circle-margin #{-$circle-margin}; 
+		&:nth-child(even){
+			position:relative;
+			top: $circle-large-radius + $circle-margin;
+			@include breakpoint(medium only){
+				top: $circle-medium-radius + $circle-margin;
+			}
+			@include breakpoint(small down){
+				top: 0;
+			}
+		}
 	}
 } 

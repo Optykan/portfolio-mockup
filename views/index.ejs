@@ -1,19 +1,21 @@
 <% var stylesheets = [''] %>
 <% include partials/header %>
 
-<div id="app">
-	<section class="content" id="content-left">
-		<h1>Title Left</h1>
-		<hr/>
-		<div class="content-description">
-			
-		</div>
-	</section>
-	<section class="content" id="content-right">
-		<% portfolio.forEach(project=>{ %>
-			<%- include('partials/circle-item', {project: project}) %>
-		<% }) %>
-	</section>
+<div class="wrapper">
+	<div id="app">
+		<section class="content" id="content-left">
+			<h1>Title Left</h1>
+			<hr/>
+			<div class="content-description">
+				
+			</div>
+		</section>
+		<section class="content" id="content-right">
+			<% portfolio.forEach(project=>{ %>
+				<%- include('partials/circle-item', {project: project}) %>
+			<% }) %>
+		</section>
+	</div>
 </div>
 
 <% var scripts=[''] %>

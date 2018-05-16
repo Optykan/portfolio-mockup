@@ -23,6 +23,8 @@ function get(url, params){
 }
 
 (function(){
+	$(document).foundation();
+	
 	get('http://localhost:3001/api/portfolio')
 		.then(response=>{console.log(response)})
 		.catch(err=>{console.error(err)})
