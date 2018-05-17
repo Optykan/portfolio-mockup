@@ -1,4 +1,5 @@
 @import '../../node_modules/foundation-sites/scss/foundation';
+@import 'animations';
 @import 'settings';
 @include foundation-everything;
 
@@ -6,6 +7,7 @@ $circle-large-radius: rem-calc(150);
 $circle-medium-radius: rem-calc(100);
 $circle-small-radius: rem-calc(150);
 $circle-margin: 0.5rem;
+$circle-wiggle-time: 0.6s;
 
 html, body, .wrapper, #app{
 	height: 100%;
@@ -21,6 +23,8 @@ html, body, .wrapper, #app{
 	display:flex;
 	justify-content: center;
 	align-items: center;
+	position: relative;
+	z-index: 0;
 	width: 960px;
 	#content-right{
 		display: flex;
@@ -44,29 +48,59 @@ html, body, .wrapper, #app{
 		padding: 1rem;
 		flex: 1 0 auto;
 	}
-	.circle{
+	.circle-wrapper{
 		border-radius: 50%;
-		background-color: red;
-		height: 2*$circle-large-radius;
-		width: 2*$circle-large-radius;
-		@include breakpoint(medium only){
-			height: 2*$circle-medium-radius;
-			width: 2*$circle-medium-radius;
-		}
-		@include breakpoint(small down){
-			height: 2*$circle-small-radius;
-			width: 2*$circle-small-radius;
-		}
-		background-position: center;
+		transition: all $circle-wiggle-time ease;
+		box-shadow: 0 0 0 $light-gray;
 		margin: $circle-margin #{-$circle-margin}; 
-		&:nth-child(even){
+		position:relative;
+		.circle{
 			position:relative;
+			transition: all $circle-wiggle-time ease;
+			border-radius: 50%;
+			height: 2*$circle-large-radius;
+			width: 2*$circle-large-radius;
+			background-position: center;
+			@include breakpoint(medium only){
+				height: 2*$circle-medium-radius;
+				width: 2*$circle-medium-radius;
+			}
+			@include breakpoint(small down){
+				height: 2*$circle-small-radius;
+				width: 2*$circle-small-radius;
+			}
+		}
+		&:nth-child(even){
 			top: $circle-large-radius + $circle-margin;
 			@include breakpoint(medium only){
 				top: $circle-medium-radius + $circle-margin;
 			}
 			@include breakpoint(small down){
 				top: 0;
+			}
+			&:hover{
+				margin-left: 1rem;
+			}
+		}
+		&:nth-child(odd):hover{
+			margin-right: 1rem;
+		}
+		&:hover{
+			transform: scale(1.1);
+			margin-bottom: 1rem;
+			margin-top: 1rem;
+			box-shadow: 2px 2px 8px $medium-gray;
+			&::after{
+				top: 0;
+				left: 0;
+				background-color: $medium-gray;
+				content: " ";
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				border-radius: 50%;
+				animation: pulse 2s ease-out infinite;
+				z-index: -1;
 			}
 		}
 	}
