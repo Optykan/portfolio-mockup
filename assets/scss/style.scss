@@ -93,14 +93,14 @@ html, body, .wrapper, #app{
 			&::after{
 				top: 0;
 				left: 0;
-				background-color: $medium-gray;
+				background-color: $dark-gray;
 				content: " ";
 				width: 100%;
 				height: 100%;
 				position: absolute;
 				border-radius: 50%;
-				animation: pulse 2s ease-out infinite;
-				z-index: -1;
+				animation: pulse 3s ease infinite;
+				z-index: -99;
 			}
 		}
 	}
