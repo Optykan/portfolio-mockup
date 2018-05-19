@@ -25,6 +25,8 @@ function get(url, params) {
 }
 
 (function () {
+	var animationTimers = {};
+
 	$(document).foundation();
 
 	get('http://localhost:3001/api/portfolio').then(function (response) {
@@ -32,4 +34,12 @@ function get(url, params) {
 	}).catch(function (err) {
 		console.error(err);
 	});
+
+	$(".circle-wrapper").mouseover(function (e) {
+		$(this).addClass("circle-animated");
+		if (animationTimers[this.id]) {
+			animationTimers[this.id] = Date.now();
+		}
+	});
+	$(".circle-wrapper").mouseout(function (e) {});
 })();

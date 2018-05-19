@@ -11,7 +11,7 @@
 			</div>
 		</section>
 		<section class="content" id="content-right">
-			<% portfolio.forEach(project=>{ %>
+			<% portfolio.forEach((project)=>{ %>
 				<%- include('partials/circle-item', {project: project}) %>
 			<% }) %>
 		</section>

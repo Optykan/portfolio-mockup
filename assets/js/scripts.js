@@ -23,9 +23,21 @@ function get(url, params){
 }
 
 (function(){
+	let animationTimers = {}
+
 	$(document).foundation();
 	
 	get('http://localhost:3001/api/portfolio')
 		.then(response=>{console.log(response)})
 		.catch(err=>{console.error(err)})
+
+	$(".circle-wrapper").mouseover(function(e){
+		$(this).addClass("circle-animated")
+		if(animationTimers[this.id]){
+			animationTimers[this.id] = Date.now()
+		}
+	})
+	$(".circle-wrapper").mouseout(function(e){
+
+	})
 })()
