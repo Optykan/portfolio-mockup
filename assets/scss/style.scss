@@ -25,7 +25,8 @@ html, body, .wrapper, #app{
 	align-items: center;
 	position: relative;
 	z-index: 0;
-	width: 960px;
+	// width: 960px;
+	width: 100%;
 	#content-right{
 		display: flex;
 		flex-wrap: wrap;
@@ -51,7 +52,7 @@ html, body, .wrapper, #app{
 	.circle-wrapper{
 		border-radius: 50%;
 		transition: all $circle-wiggle-time ease;
-		box-shadow: 0 0 0 $light-gray;
+		box-shadow: 3px 3px 8px $medium-gray;
 		margin: $circle-margin #{-$circle-margin}; 
 		position:relative;
 		.circle{
@@ -90,18 +91,18 @@ html, body, .wrapper, #app{
 			margin-bottom: 1rem;
 			margin-top: 1rem;
 			box-shadow: 2px 2px 8px $medium-gray;
-			&::after{
-				top: 0;
-				left: 0;
-				background-color: $medium-gray;
-				content: " ";
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				border-radius: 50%;
-				animation: pulse 2s ease infinite;
-				z-index: -99;
-			}
+		}
+		&.circle-animated::after{
+			top: 0;
+			left: 0;
+			background-color: $medium-gray;
+			content: " ";
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			border-radius: 50%;
+			animation: pulse 2s ease infinite;
+			z-index: -99;
 		}
 	}
 } 

@@ -27,17 +27,25 @@ function get(url, params){
 
 	$(document).foundation();
 	
-	get('http://localhost:3001/api/portfolio')
-		.then(response=>{console.log(response)})
-		.catch(err=>{console.error(err)})
+	// get('http://localhost:3001/api/portfolio')
+	// 	.then(response=>{console.log(response)})
+	// 	.catch(err=>{console.error(err)})
 
 	$(".circle-wrapper").mouseover(function(e){
 		$(this).addClass("circle-animated")
-		if(animationTimers[this.id]){
-			animationTimers[this.id] = Date.now()
+		animationTimers[this.id] = {
+			time: Date.now(),
+			timeout: null
 		}
 	})
 	$(".circle-wrapper").mouseout(function(e){
-
+		const animationTime = 2000;
+		let that = this;
+		let timeRemaining = animationTime - ((Date.now() - animationTimers[this.id].time) % animationTime);
+		console.log(timeRemaining);
+		clearTimeout(animationTimers[this.id].timeout);
+		animationTimers[this.id].timeout = setTimeout(function(){
+			$(that).removeClass('circle-animated')
+		}, timeRemaining);
 	})
 })()
